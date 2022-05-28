@@ -1,10 +1,13 @@
+from datetime import datetime
 from http.client import InvalidURL
 from typing import Union
-from typing import NoReturn
-from job_boards.base import JobBoard, JobInfo
-from linkedin import linkedin
-from datetime import datetime
+
 import validators
+from linkedin.linkedin import LinkedInApplication
+from linkedin.linkedin import LinkedInDeveloperAuthentication
+
+from job_boards.base import JobBoard
+from job_boards.base import JobInfo
 
 
 class LinkedIn(JobBoard):
@@ -12,7 +15,7 @@ class LinkedIn(JobBoard):
     Represents a LinkedIn job board
     """
 
-    def __init__(self) -> NoReturn:
+    def __init__(self) -> None:
         self._job_board_name = "LinkedIn"
 
     def get_job_info(self, job: Union[str, int]) -> JobInfo:
@@ -30,8 +33,8 @@ class LinkedIn(JobBoard):
             posted_time=datetime.fromtimestamp(response.get("postingTimestamp")),
         )
 
-    def _create_session(self) -> NoReturn:
+    def _create_session(self) -> None:
         # Initiate the developer authentication class
-        auth = linkedin.LinkedInDeveloperAuthentication()
+        auth = LinkedInDeveloperAuthentication()
         # Pass it to the client.
-        self._client: linkedin.LinkedInApplication = linkedin.LinkedInApplication(auth)
+        self._client: LinkedInApplication = LinkedInApplication(auth)

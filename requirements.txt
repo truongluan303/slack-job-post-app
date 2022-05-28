@@ -1,3 +1,4 @@
 slackclient
+pre-commit
 python-linkedin
 validators

@@ -1,9 +1,10 @@
 import importlib
-import os
 import logging
+import os
+
+from .default_settings import *
 
 # pull in all default settings
-from .default_settings import *
 
 
 class Environments:

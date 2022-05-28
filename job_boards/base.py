@@ -1,10 +1,11 @@
 from dataclasses import dataclass
-from typing import Any, NoReturn, Union
 from datetime import datetime
+from typing import Any
+from typing import Union
 
 
 class AuthentificationError(Exception):
-    def __init__(self, message="Unable to authenticate the API") -> NoReturn:
+    def __init__(self, message="Unable to authenticate the API") -> None:
         super().__init__(message)
 
 
@@ -49,7 +50,7 @@ class JobBoard:
         """
         raise NotImplementedError()
 
-    def _create_session(self) -> NoReturn:
+    def _create_session(self) -> None:
         """
         Create the api session.
         """
