@@ -1,0 +1,3 @@
+slackclient
+python-linkedin
+validators
