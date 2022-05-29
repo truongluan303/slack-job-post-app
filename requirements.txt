@@ -1,4 +1,7 @@
-slackclient
+beautifulsoup4
+html2text
+lxml
+slack
 pre-commit
-python-linkedin
+requests
 validators

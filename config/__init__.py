@@ -2,9 +2,7 @@ import importlib
 import logging
 import os
 
-from .default_settings import *
-
-# pull in all default settings
+from .default_settings import *  # pull in all default settings
 
 
 class Environments:
@@ -27,15 +25,18 @@ def is_local() -> bool:
 
 _logger = logging.getLogger(__name__)
 
+# pull in the settings from the correct environment
 try:
     mod = importlib.import_module(f"{ENV}_settings", __name__)
     for key in dir(mod):
         if key.isupper():
             globals()[key] = mod.__dict__[key]
 except ImportError:
+    print("yoooo")
     _logger.info(f"Settings file for {ENV} environment not found, using defaults!")
 
 
 # clean up the exports so that they don't appear in exports
 del os
 del logging
+del importlib
