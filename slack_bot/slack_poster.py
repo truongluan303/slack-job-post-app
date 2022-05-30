@@ -10,7 +10,6 @@ from slack_sdk.errors import SlackApiError
 from slack_sdk.web import SlackResponse
 
 from config import SLACK_BOT_USER_OAUTH_TOKEN
-from config import SLACK_ICON_PATH
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -35,12 +34,7 @@ class SlackPoster:
 
         if attachments:
             for att in attachments:
-                att.update(
-                    {
-                        "footer_icon": SLACK_ICON_PATH,
-                        "ts": datetime.now().timestamp(),
-                    }
-                )
+                att.update({"ts": datetime.now().timestamp()})
         slack_responses = []
         for channel in channels:
             thread_ts = (

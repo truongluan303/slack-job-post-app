@@ -12,11 +12,17 @@ from bs4 import BeautifulSoup as bs
 class JobInfo:
     title: str = None
     company: str = None
-    company_pic: str = None
     description: str = None
+    location: str = None
     posted_time_ago: timedelta = None
     summary: str = None
+    company_pic_url: str = None
     url: str = None
+
+
+class JobBoardType:
+    LINKEDIN = "LinkedIn"
+    GLASSDOOR = "Glassdoor"
 
 
 class NeedSubclassImplementationError(Exception):
@@ -39,11 +45,14 @@ class JobBoard:
     _title_key: str
     _time_ago_key: str
     _description_key: str
+    _location_key: str
     _company_pic_key: str
-    _link_to_job: str
+    _img_src_key: str
+    _link_to_job_in_list: str
 
     def __init_subclass__(cls) -> None:
         cls._html2text = html2text.HTML2Text()
+        cls._html2text.body_width = 0
 
     def get_job_info(self, job: Union[str, int]) -> JobInfo:
         """
@@ -79,6 +88,8 @@ class JobBoard:
         summary = soup.find("title").get_text()
         job_title = soup.find_all(class_=self._title_key)[0].get_text(strip=True)
         company = soup.find_all(class_=self._company_key)[0].get_text(strip=True)
+        location = soup.find_all(class_=self._location_key)[0].get_text(strip=True)
+        pic_url = soup.find_all(class_=self._company_pic_key)[0][self._img_src_key]
 
         desc = soup.find_all(class_=self._description_key)
         desc = desc[0]
@@ -92,6 +103,8 @@ class JobBoard:
             title=job_title,
             company=company,
             description=desc,
+            company_pic_url=pic_url,
+            location=location,
             summary=summary,
             posted_time_ago=posted_time_ago,
             url=url,

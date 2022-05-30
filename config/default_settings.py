@@ -1,8 +1,5 @@
 import os
 
-from config.local_settings import JOB_POSTING_CHANNEL
-from config.local_settings import SLACK_SIGNIN_SECRET
-
 
 class OSEnvKeys:
     """
@@ -13,7 +10,9 @@ class OSEnvKeys:
     SLACK_SIGNIN_SECRET = "SLACK_SIGNIN_SECRET"
     JOB_POSTING_CHANNEL = "JOB_POSTING_CHANNEL"
     SLACK_TEST_CHANNEL = "SLACK_TEST_CHANNEL"
-    SLACK_ICON_PATH = "SLACK_ICON_PATH"
+    TRIDENT_IMG_URL = "TRIDENT_IMG_URL"
+    LINKEDIN_IMG_URL = "LINKEDIN_IMG_URL"
+    GLASSDOOR_IMG_URL = "GLASSDOOR_IMG_URL"
 
     @classmethod
     def to_list(cls):
@@ -22,8 +21,15 @@ class OSEnvKeys:
         return [getattr(cls, attr) for attr in dir(cls) if condition(attr)]
 
 
+# Slack credentials
 SLACK_BOT_USER_OAUTH_TOKEN = os.environ.get(OSEnvKeys.SLACK_BOT_USER_OAUTH_TOKEN)
 SLACK_SIGNIN_SECRET = os.environ.get(OSEnvKeys.SLACK_SIGNIN_SECRET)
+
+# Slack Channels
 JOB_POSTING_CHANNEL = os.environ.get(OSEnvKeys.JOB_POSTING_CHANNEL)
 SLACK_TEST_CHANNEL = os.environ.get(OSEnvKeys.JOB_POSTING_CHANNEL)
-SLACK_ICON_PATH = os.environ.get(OSEnvKeys.SLACK_ICON_PATH)
+
+# Images URLs
+TRIDENT_IMG_URL = os.environ.get(OSEnvKeys.TRIDENT_IMG_URL)
+LINKEDIN_IMG_URL = os.environ.get(OSEnvKeys.LINKEDIN_IMG_URL)
+GLASSDOOR_IMG_URL = os.environ.get(OSEnvKeys.GLASSDOOR_IMG_URL)

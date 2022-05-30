@@ -1,9 +1,10 @@
 from flask import Flask
 from slackeventsapi import SlackEventAdapter
 
-from config import JOB_POSTING_CHANNEL
 from config import SLACK_BOT_USER_OAUTH_TOKEN
 from config import SLACK_SIGNIN_SECRET
+from config import SLACK_TEST_CHANNEL
+from job_boards_scrapers import LinkedIn
 from slack_bot import SlackJobPoster
 
 
@@ -32,18 +33,11 @@ slack_ev_adapter = SlackEventAdapter(SLACK_SIGNIN_SECRET, "/slack/events", app)
 # if __name__ == '__main__':
 #     app.run(host='0.0.0.0', port=8080)
 
+li = LinkedIn()
+job_info = li.get_job_info("https://www.linkedin.com/jobs/view/3092250691/")
 
-msg = ">> hello world!"
-SlackJobPoster().post_message(
-    channels=JOB_POSTING_CHANNEL,
-    message="check out this cool bot!",
-    attachments=[
-        {
-            "fallback": "How is it going?",
-            "color": "#36a64f",
-            "title": "Luan is testing this bot",
-            "footer": "This is a test message",
-            "text": "This is just a test message\nMute this channel if you want!",
-        }
-    ],
+SlackJobPoster().post_job(
+    channels=[SLACK_TEST_CHANNEL],
+    job_info=job_info,
+    job_board="LinkedIn",
 )
