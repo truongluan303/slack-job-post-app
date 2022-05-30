@@ -1,7 +1,9 @@
 beautifulsoup4
+flask
 html2text
-lxml
-slack
+slack_sdk
+slackclient
+slackeventsapi
 pre-commit
 requests
 validators

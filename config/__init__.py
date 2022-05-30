@@ -27,12 +27,11 @@ _logger = logging.getLogger(__name__)
 
 # pull in the settings from the correct environment
 try:
-    mod = importlib.import_module(f"{ENV}_settings", __name__)
+    mod = importlib.import_module(f"{__name__}.{ENV}_settings")
     for key in dir(mod):
         if key.isupper():
             globals()[key] = mod.__dict__[key]
 except ImportError:
-    print("yoooo")
     _logger.info(f"Settings file for {ENV} environment not found, using defaults!")
 
 

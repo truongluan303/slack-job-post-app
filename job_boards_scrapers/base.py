@@ -8,13 +8,6 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 
-class NeedSubclassImplementationError(Exception):
-    """Method needs implementation from subclass"""
-
-    def __init__(self, msg="Need implementation from subclass") -> None:
-        super().__init__(msg)
-
-
 @dataclass
 class JobInfo:
     title: str = None
@@ -24,6 +17,13 @@ class JobInfo:
     posted_time_ago: timedelta = None
     summary: str = None
     url: str = None
+
+
+class NeedSubclassImplementationError(Exception):
+    """Method needs implementation from subclass"""
+
+    def __init__(self, msg="Need implementation from subclass") -> None:
+        super().__init__(msg)
 
 
 class JobBoard:
