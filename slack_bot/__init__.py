@@ -55,12 +55,10 @@ class SlackJobPoster(SlackPoster):
             "footer_icon": TRIDENT_IMG_URL,
             "actions": [
                 {
-                    "id": "apply button",
+                    "name": "apply",
+                    "text": "Apply Now",
                     "type": "button",
-                    "name": "Apply",
-                    "integration": {
-                        "url": job_info.url,
-                    },
+                    "url": job_info.url,
                 }
             ],
         }
