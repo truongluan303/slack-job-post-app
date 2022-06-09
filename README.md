@@ -1,5 +1,5 @@
 # A Slack App to Post Jobs Quickly and Beautifully
-![download](https://user-images.githubusercontent.com/83048295/172769182-6b688f7c-5bef-4c41-aae9-977f87cba976.png)
+![Desktop-screenshot](https://user-images.githubusercontent.com/83048295/172769254-b3ad3d65-a09c-471b-92e1-613d53ff9b8a.png)
 
 
 ### Setup
